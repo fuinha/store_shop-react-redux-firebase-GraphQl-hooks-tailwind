@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './directory.styles.scss'
+// import './directory.styles.scss'
 import MenuItem from '../menu-item/menu-item.component.jsx'
 
 const Directory = () => {
@@ -30,10 +30,16 @@ const Directory = () => {
             imageUrl: require('../../assests/images/mens.jpg'),
             id: 5,
             size: 'large'
-            },
+        },
+        {
+            title: 'accessories',
+            imageUrl: require('../../assests/images/accessories.jpg'),
+            id: 6,
+            size: 'large'
+        }
     ])
     return (
-        <section className='directory-menu'>
+        <section className='directory-menu flex flex-wrap -mb-4 justify-around'>
             { sections.map(({title, id, imageUrl, size}) => (
                 <MenuItem key={ id } title={ title } imageUrl={ imageUrl } size={ size}/>
             ))}
