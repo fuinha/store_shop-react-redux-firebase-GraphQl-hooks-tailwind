@@ -39,7 +39,7 @@ const Directory = () => {
         }
     ])
     return (
-        <section className='directory-menu flex flex-wrap -mb-4 justify-around'>
+        <section className='directory-menu flex flex-wrap -mb-4 justify-center'>
             { sections.map(({title, id, imageUrl, size}) => (
                 <MenuItem key={ id } title={ title } imageUrl={ imageUrl } size={ size}/>
             ))}
