@@ -5,7 +5,7 @@ import HomePage from './pages/homepage/HomePage.jsx';
 import ErrorPage from './pages/errorpage/ErrorPage.jsx';
 import ShopPage from './pages/shoppage/ShopPage.jsx'
 import { Route, Switch } from 'react-router-dom';
-
+import LoginPage from './pages/auth/LoginPage.jsx'
 const HatsPage = () => (
   <div>
     <h1>HATS PAGE </h1>
@@ -19,6 +19,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={ HomePage } />
         <Route path='/shop' component={ShopPage} />
+        <Route path='/login' component={LoginPage} />
         <Route  component={ErrorPage} />
       </Switch>
     </div>

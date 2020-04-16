@@ -6,11 +6,11 @@ import CollectionPreview from '../../components/collection-preview/collection-pr
 const ShopPage = () => {
     const [collections, setCollections] = useState(SHOP_DATA)
     return (
-        <div >
+        <section >
              {collections.map(({ id, ...otherCollectionProps }) => (
           <CollectionPreview key={id} {...otherCollectionProps} />
         ))}
-        </div>
+        </section>
     )
 }
 
