@@ -6,6 +6,7 @@ import ErrorPage from './pages/errorpage/ErrorPage.jsx';
 import ShopPage from './pages/shoppage/ShopPage.jsx'
 import { Route, Switch } from 'react-router-dom';
 import LoginPage from './pages/auth/LoginPage.jsx'
+import RegisterPage from './pages/auth/RegisterPage.jsx'
 const HatsPage = () => (
   <div>
     <h1>HATS PAGE </h1>
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/' component={ HomePage } />
         <Route path='/shop' component={ShopPage} />
         <Route path='/login' component={LoginPage} />
+        <Route path='/register' component={RegisterPage} />
         <Route  component={ErrorPage} />
       </Switch>
     </div>

@@ -37,7 +37,7 @@ const Navbar = () => {
             CONTACT
           </Link>
           <Link
-            to='#responsive-header'
+            to='/login'
             className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-indigo-100 mr-4'
           >
             SIGN IN
