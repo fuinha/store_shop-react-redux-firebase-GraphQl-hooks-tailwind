@@ -7,16 +7,25 @@ import ShopPage from './pages/shoppage/ShopPage.jsx';
 import { Route, Switch } from 'react-router-dom';
 import LoginPage from './pages/auth/LoginPage.jsx';
 import RegisterPage from './pages/auth/RegisterPage.jsx';
-import {auth} from './firebase/firebase.utils'
+import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
-  const [unsubscribeFromAuth, setUnsubscribeFromAuth] = useState(null)
+ 
   useEffect(() => { 
-    auth.onAuthStateChanged(user => {
-      setCurrentUser(user)
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+  
+        userRef.onSnapshot(snapShot => {
+        
+          setCurrentUser({ id: snapShot.id, ...snapShot.data() })
+        })
+      }
+      setCurrentUser(userAuth)
     });
-  })
+  }, [])
+
   return (
     <div className='App'>
       <Navbar currentUser={ currentUser}/>
@@ -32,3 +41,4 @@ function App() {
 }
 
 export default App;
+

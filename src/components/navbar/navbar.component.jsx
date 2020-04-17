@@ -38,7 +38,7 @@ const Navbar = ({ currentUser }) => {
           </Link>
           {currentUser ? (
             <button
-              onClick={()=> auth.signOut()}
+              onClick={ () => { auth.signOut(); window.location.reload();}}
               className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-indigo-100 mr-4'
             >
               SIGN OUT
