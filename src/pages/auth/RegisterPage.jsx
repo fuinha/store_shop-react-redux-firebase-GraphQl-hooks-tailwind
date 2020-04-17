@@ -4,6 +4,7 @@ import authSvg from './login.svg';
 import FormInput from '../../components/formcomponent/input.component.jsx';
 import FormButton from '../../components/formcomponent/button.component.jsx';
 import Form from '../../components/formcomponent/form.component.jsx';
+import {auth, createUserProfileDocument} from '../../firebase/firebase.utils.js'
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -15,14 +16,37 @@ const LoginPage = () => {
   const { email, password, password1, name } = formData;
 
   const handleChange = (text) => (e) => {
-    console.log(email, password);
     setFormData({ ...formData, [text]: e.target.value });
   };
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    if (!name || !email || !password) {
+      alert('please fill all fields')
+    }else if(password !== password1) {
+      alert('passwords don\'t match');
+    } else {
+      try {
+        const { user } = await auth.createUserWithEmailAndPassword(email, password)
+        await createUserProfileDocument(user, { displayName: name })
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          password1: ''
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    
+  }
   return (
     <Form authSvg={authSvg} title='Sign Up For Congar'>
       <form
         className='mx-auto max-w-xs relative '
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <FormInput
           type='email'
@@ -32,23 +56,23 @@ const LoginPage = () => {
         />
         <FormInput
           type='text'
-          placeholder='Congar'
+          placeholder='Name'
           value={name}
           handlechange={handleChange('name')}
         />
         <FormInput
           type='password'
-          placeholder='*********'
+          placeholder='Password'
           value={password}
           handlechange={handleChange('password')}
         />
         <FormInput
           type='password'
-          placeholder='*********'
-          value={password}
+          placeholder='Confirm Password'
+          value={password1}
           handlechange={handleChange('password1')}
         />
-        <FormButton color='indigo'>Register</FormButton>
+        <FormButton type='submit' color='indigo'>Register</FormButton>
         <div className='flex justify-between mt-6'>
           <Link to='/login'>Don't have an account? Sign In</Link>
         </div>
