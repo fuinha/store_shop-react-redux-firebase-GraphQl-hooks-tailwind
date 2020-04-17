@@ -4,7 +4,7 @@ import authSvg from './login.svg';
 import FormInput from '../../components/formcomponent/input.component.jsx';
 import FormButton from '../../components/formcomponent/button.component.jsx';
 import Form from '../../components/formcomponent/form.component.jsx';
-
+import {signInWithGoogle} from '../../firebase/firebase.utils.js'
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -34,8 +34,8 @@ const LoginPage = () => {
           value={password}
           handlechange={handleChange('password')}
         />
-        <FormButton color='indigo'>Sign In</FormButton>
-        <FormButton color='red'>Google Sign</FormButton>
+        <FormButton color='indigo' type='submit'>Sign In</FormButton>
+        <FormButton color='red' onClick={(e)=>{e.preventDefault(); signInWithGoogle()}}>Google Sign</FormButton>
         <div className='flex justify-between mt-6'>
           <Link to='/register'>Sign Up</Link>
           <Link to='/'>Forget password?</Link>

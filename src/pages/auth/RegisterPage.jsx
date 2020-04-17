@@ -50,7 +50,7 @@ const LoginPage = () => {
         />
         <FormButton color='indigo'>Register</FormButton>
         <div className='flex justify-between mt-6'>
-          <Link to='/register'>Don't have an account? Sign In</Link>
+          <Link to='/login'>Don't have an account? Sign In</Link>
         </div>
       </form>
     </Form>

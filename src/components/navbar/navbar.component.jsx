@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const Navbar = () => {
+import { auth } from '../../firebase/firebase.utils';
+const Navbar = ({ currentUser }) => {
   return (
     <nav className='flex items-center justify-between flex-wrap bg-indigo-500 py-6 px-16'>
       <Link to='/' className='flex items-center flex-shrink-0 text-white mr-6'>
@@ -36,12 +36,22 @@ const Navbar = () => {
           >
             CONTACT
           </Link>
-          <Link
-            to='/login'
-            className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-indigo-100 mr-4'
-          >
-            SIGN IN
-          </Link>
+          {currentUser ? (
+            <button
+              onClick={()=> auth.signOut()}
+              className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-indigo-100 mr-4'
+            >
+              SIGN OUT
+            </button>
+          ) : (
+            <Link
+              to='/login'
+              className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-indigo-100 mr-4'
+            >
+              SIGN IN
+            </Link>
+          )}
+          
           <Link
             to='#'
             className='inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-100 hover:bg-indigo-700 mt-4 lg:mt-0'
