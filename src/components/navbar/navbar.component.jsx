@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.utils';
+import {connect} from 'react-redux'
 const Navbar = ({ currentUser }) => {
   return (
     <nav className='flex items-center justify-between flex-wrap bg-indigo-500 py-6 px-16'>
@@ -64,4 +65,7 @@ const Navbar = ({ currentUser }) => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+})
+export default  connect(mapStateToProps)(Navbar);
